@@ -1,4 +1,21 @@
 
+// this function calls each simple math function depending on the operator chosen
+function operate(operator, num, num2) {
+
+    if (operator === "add") {
+        add(num, num2);
+
+    } else if (operator === "subract") {
+        subtract(num, num2);
+
+    } else if (operator === "multipy") {
+        multiply(num, num2);
+
+    } else if (operator === "multipy") {
+        multiply(num, num2);
+    }
+}
+
 // this section contains simple math functions
 function add(num, num2) {
     return num + num2;
