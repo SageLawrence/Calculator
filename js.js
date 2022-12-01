@@ -8,13 +8,14 @@ function operate(operator, num, num2) {
     } else if (operator === "subract") {
         subtract(num, num2);
 
-    } else if (operator === "multipy") {
+    } else if (operator === "multiply") {
         multiply(num, num2);
 
-    } else if (operator === "multipy") {
-        multiply(num, num2);
+    } else if (operator === "divide") {
+        divide(num, num2);
     }
 }
+// this function calls each simple math function depending on the operator chosen
 
 // this section contains simple math functions
 function add(num, num2) {
