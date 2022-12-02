@@ -1,5 +1,14 @@
 
-// this section places operators in the display
+// clears the display
+document.querySelector('.clear').addEventListener('click', clearDisplay); // adds click listener to clear button
+
+function clearDisplay() { // resets display to 0
+
+    document.querySelector('.display').textContent = '0';
+}
+// clears the display
+
+// places operators in the display
 const operators = document.querySelectorAll('.operator'); // selects all operator buttons
 
 operators.forEach(operator => operator.addEventListener('click', displayOperator)); // looks for clicks on operator buttons
@@ -10,8 +19,8 @@ function displayOperator() { // places the operator in the display
 
     const display = document.querySelector('.display'); // grabs the display to apply changes
 
-    if (display.textContent !== '0'
-        && display.textContent.includes('+') === false
+    if (display.textContent !== '0' // does not add operator to 0
+        && display.textContent.includes('+') === false // only adds operator if there are no others in display
         && display.textContent.includes('-') === false
         && display.textContent.includes('*') === false
         && display.textContent.includes('÷') === false) {
@@ -20,9 +29,9 @@ function displayOperator() { // places the operator in the display
     }
 
 }
-// this section places operators in the display
+// places operators in the display
 
-// this section places numbers in the display
+// places numbers in the display
 const numbers = document.querySelectorAll('.number'); // selects all number buttons
 
 numbers.forEach(number => number.addEventListener('click', displayNumber)); // looks for clicks on number buttons
@@ -42,7 +51,7 @@ function displayNumber() { // places the number in the display
         display.textContent += numberSelection;
     }
 }
-// this section places numbers in the display
+// places numbers in the display
 
 // calls simple math function depending on the operator chosen
 function operate(operator, num, num2) {
