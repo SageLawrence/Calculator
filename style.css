@@ -5,3 +5,86 @@ html {
 *, *::before, *::after {
     box-sizing: inherit;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    font-size: 48px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    border: 20px solid gray;
+}
+
+.display {
+    text-align: end;
+    font-size: 64px;
+    background-color: lightblue;
+    border: 5px solid whitesmoke;
+    padding: 5px;
+}
+
+.operator, .equal, .clear {
+    color: white;
+    background-color: blueviolet;
+}
+
+.number {
+    color: blueviolet;
+    background-color: lightgray;
+}
+
+.buttons {
+    width: 800px;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+}
+
+.topRow {
+    display: flex;
+}
+
+.addRow, .equalRow {
+    display: flex;
+}
+
+.leftOfAdd, .leftOfEqual {
+    display: flex;
+    flex-direction: column;
+}
+
+.number, .operator, .clear {
+    width: 200px;
+    height: 200px;
+}
+
+.equal, #add {
+    width: 200px;
+    height: 400px;
+}
+
+.zero {
+    width: 400px;
+}
+
+.decimal {
+    width: 200px;
+}
+
+/* Temporary Classes */
+.pressed {
+    color: blueviolet;
+    background-color: white;
+}
+/* Temporary Classes */

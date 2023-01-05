@@ -1,4 +1,8 @@
 
+//
+
+//
+
 // clears the display
 document.querySelector('.clear').addEventListener('click', clearDisplay); // adds click listener to clear button
 
@@ -8,25 +12,25 @@ function clearDisplay() { // resets display to 0
 }
 // clears the display
 
-// places operators in the display
+// places operators in the  --- UPDATE TO CALL OPERATE FUNCTION WHEN SECOND OPERATOR IS PRESSED 
 const operators = document.querySelectorAll('.operator'); // selects all operator buttons
 
 operators.forEach(operator => operator.addEventListener('click', displayOperator)); // looks for clicks on operator buttons
 
-function displayOperator() { // places the operator in the display
+function displayOperator() { // identifies the operator and 
 
-    const operatorSelection = this.textContent; // grabs the operator type
+    this.classList.add('pressed');
+
+    const operatorSelection = this.id; // grabs the operator type
+
+    console.log(operatorSelection);
 
     const display = document.querySelector('.display'); // grabs the display to apply changes
 
-    if (display.textContent !== '0' // does not add operator to 0
-        && display.textContent.includes('+') === false // only adds operator if there are no others in display
-        && display.textContent.includes('-') === false
-        && display.textContent.includes('*') === false
-        && display.textContent.includes('÷') === false) {
+    if (display.textContent !== '0') { // does not add operator to 0
 
-        display.textContent += operatorSelection;
-    }
+    //     display.textContent += operatorSelection;
+        }
 
 }
 // places operators in the display
@@ -42,7 +46,12 @@ function displayNumber() { // places the number in the display
 
     const display = document.querySelector('.display'); // grabs the display to apply changes
 
-    if(display.textContent === '0'){ // if display is empty or reset, sets display to new number
+    const operatorCheck = (document.getElementsByClassName('pressed')); // creates an array of active operators to check if one is pressed
+
+    console.log(operatorCheck);
+
+    if(display.textContent === '0'
+        || operatorCheck.length !== 0) { // if display is empty/reset/an operator is selected, sets display to new number
 
         display.textContent = numberSelection;
 
