@@ -4,44 +4,110 @@ let num2 = undefined;
 let solution = undefined;
 let operator = undefined;
 
-const display = document.querySelector('.display'); // grabs the display to apply changes
 const operators = document.querySelectorAll('.operator'); // selects all operator buttons
 const numbers = document.querySelectorAll('.number'); // selects all number buttons
 const equal = document.querySelector('.equal'); // selects equal button
+const clear = document.querySelector('.clear'); // selects clear button
+const display = document.querySelector('.display'); // grabs the display to apply changes
 // initial values
 
 // event listeners
-document.querySelector('.clear').addEventListener('click', clearDisplay); // adds click listener to clear button
 operators.forEach(operator => operator.addEventListener('click', displayOperator)); // looks for clicks on operator buttons
 numbers.forEach(number => number.addEventListener('click', displayNumber)); // looks for clicks on number buttons
+equal.addEventListener('click', callOperate); // looks for clicks on equal button
+clear.addEventListener('click', clearAll); // adds click listener to clear button
 // event listeners
 
 // clears all
-function clearDisplay() { // resets display and values
+function clearAll() {
     resetValues();
     solution = undefined;
     display.textContent = '0';
 }
 // clears all
 
-// 
+// clears working values
+function resetValues() {
+    num1 = undefined;
+    num2 = undefined;
+    operator = undefined;
+    clearOperator()
+}
+// clears working values
 
+// clears the highlighted operator
+function clearOperator() {
+    operators.forEach(operator => operator.classList.remove('pressed'));
+}
+// clears the highlighted operator
 
-function displayOperator() { // 
+// calls the operate function if nums and operator are defined
+function callOperate() {
 
     if (operator !== undefined
-        && num1 !== undefined
-        && num2 !== undefined) {
-        operate(operator, num1, num2);
+    && num1 !== undefined
+    && num2 !== undefined) {
+
+        operate(operator, Number(num1), Number(num2));
     }
+};
+// calls the operate function if nums and operator are defined
 
-    operators.forEach(operator => operator.classList.remove('pressed'));
+// calls math function depending on the operator chosen
+function operate(operator, num1, num2) {
 
+    if (operator === 'add') {
+        add(num1, num2);
+
+    } else if (operator === 'subtract') {
+        subtract(num1, num2);
+
+    } else if (operator === 'multiply') {
+        multiply(num1, num2);
+
+    } else if (operator === 'divide') {
+        divide(num1, num2);
+    }
+}
+// calls math function depending on the operator chosen
+
+// math functions
+function add(num1, num2) {
+    solution = num1 + num2;
+    display.textContent = solution;
+    clearOperator();
+}
+
+function subtract(num1, num2) {
+    solution = num1 - num2;
+    display.textContent = solution;
+    clearOperator();
+}
+
+function multiply(num1, num2) {
+    solution = num1 * num2;
+    display.textContent = solution;
+    clearOperator();
+}
+
+function divide(num1, num2) {
+    solution = num1 / num2;
+    display.textContent = solution;
+    clearOperator();
+}
+// math functions
+
+function displayOperator() {
+
+    // check if operators contain class
+    //if oper
+
+    callOperate(operator, num1, num2);
+
+    clearOperator()
     this.classList.add('pressed');
 
     operator = this.id; // sets the operator
-    console.log(operator);
-
 }
 //
 
@@ -79,68 +145,8 @@ function displayNumber() { // places the number in the display
         }
 
         num2 = Number(display.textContent);
-        console.log(num2);
 
     }
 
 }
 // places numbers in the display
-
-equal.addEventListener('click', callOperate); // looks for clicks on equal button
-
-function callOperate() {
-
-    if (operator !== undefined
-    && num1 !== undefined
-    && num2 !== undefined) {
-
-        operate(operator, num1, num2);
-
-    }
-
-};
-
-// calls simple math function depending on the operator chosen
-function operate(operator, num1, num2) {
-
-    if (operator === 'add') {
-        display.textcontent = add(num1, num2); // find out why this isn't working
-
-    } else if (operator === 'subract') {
-        subtract(num1, num2);
-
-    } else if (operator === 'multiply') {
-        multiply(num1, num2);
-
-    } else if (operator === 'divide') {
-        divide(num1, num2);
-    }
-}
-// calls simple math function depending on the operator chosen
-
-
-// simple math functions
-function add(num1, num2) {
-    solution = num1 + num2;
-    console.log(solution);
-}
-
-function subtract(num1, num2) {
-    solution = num1 - num2;
-}
-
-function multiply(num1, num2) {
-    solution = num1 * num2;
-}
-
-function divide(num1, num2) {
-    solution = num1 / num2;
-}
-// simple math functions
-
-function resetValues() { // resets num and operator values
-    num1 = undefined;
-    num2 = undefined;
-    operator = undefined;
-    operators.forEach(operator => operator.classList.remove('pressed'));
-}
