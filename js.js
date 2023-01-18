@@ -1,6 +1,6 @@
 // initial values
-let num1 = undefined;
-let num2 = undefined;
+let input1 = undefined;
+let input2 = undefined;
 let solution = undefined;
 let operator = undefined;
 
@@ -28,8 +28,8 @@ function clearAll() {
 
 // clears working values
 function resetValues() {
-    num1 = undefined;
-    num2 = undefined;
+    input1 = undefined;
+    input2 = undefined;
     operator = undefined;
     clearOperator()
 }
@@ -45,10 +45,10 @@ function clearOperator() {
 function callOperate() {
 
     if (operator !== undefined
-    && num1 !== undefined
-    && num2 !== undefined) {
+    && input1 !== undefined
+    && input2 !== undefined) {
 
-        operate(operator, Number(num1), Number(num2));
+        operate(operator, Number(input1), Number(input2));
     }
 };
 // calls the operate function if nums and operator are defined
@@ -76,6 +76,7 @@ function add(num1, num2) {
     solution = num1 + num2;
     display.textContent = solution;
     clearOperator();
+    input1 = solution;
 }
 
 function subtract(num1, num2) {
@@ -102,7 +103,7 @@ function displayOperator() {
     // check if operators contain class
     //if oper
 
-    callOperate(operator, num1, num2);
+    callOperate(operator, input1, input2);
 
     clearOperator()
     this.classList.add('pressed');
@@ -129,12 +130,12 @@ function displayNumber() { // places the number in the display
 
         }
 
-        num1 = Number(display.textContent); // sets the first number variable to the display value
+        input1 = display.textContent; // sets the first number variable to the display value
 
     } else { // if there is an operator selected
 
-        if (display.textContent == num1
-            || display.textContent === '0') { // replaces num1 or 0 with new number
+        if (display.textContent == input1
+            || display.textContent === '0') { // replaces input1 or 0 with new number
 
             display.textContent = numberSelection;
 
@@ -144,7 +145,7 @@ function displayNumber() { // places the number in the display
 
         }
 
-        num2 = Number(display.textContent);
+        input2 = display.textContent;
 
     }
 
