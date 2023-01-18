@@ -38,6 +38,7 @@ function resetValues() {
 // clears the highlighted operator
 function clearOperator() {
     operators.forEach(operator => operator.classList.remove('pressed'));
+    operator = undefined;
 }
 // clears the highlighted operator
 
@@ -50,6 +51,9 @@ function callOperate() {
 
         operate(operator, Number(input1), Number(input2));
     }
+
+    clearOperator();
+
 };
 // calls the operate function if nums and operator are defined
 
@@ -66,6 +70,11 @@ function operate(operator, num1, num2) {
         multiply(num1, num2);
 
     } else if (operator === 'divide') {
+        if (num2 === 0) {
+            alert('THIS IS NOT THE WAY');
+            clearAll();
+            return;
+        }
         divide(num1, num2);
     }
 }
@@ -75,48 +84,51 @@ function operate(operator, num1, num2) {
 function add(num1, num2) {
     solution = num1 + num2;
     display.textContent = solution;
-    clearOperator();
     input1 = solution;
+    input2 = undefined;
 }
 
 function subtract(num1, num2) {
     solution = num1 - num2;
     display.textContent = solution;
-    clearOperator();
+    input1 = solution;
+    input2 = undefined;
 }
 
 function multiply(num1, num2) {
     solution = num1 * num2;
     display.textContent = solution;
-    clearOperator();
+    input1 = solution;
+    input2 = undefined;
 }
 
 function divide(num1, num2) {
     solution = num1 / num2;
     display.textContent = solution;
-    clearOperator();
+    input1 = solution;
+    input2 = undefined;
 }
 // math functions
 
+// sets new operator and calls function if one is already selected
 function displayOperator() {
-
-    // check if operators contain class
-    //if oper
 
     callOperate(operator, input1, input2);
 
-    clearOperator()
     this.classList.add('pressed');
 
     operator = this.id; // sets the operator
 }
-//
+// sets new operator and calls function if one is already selected
 
-// places numbers in the display
-
-function displayNumber() { // places the number in the display
+// places numbers in the display and sets values for operation
+function displayNumber() {
 
     const numberSelection =  this.textContent; // grabs the number of the button
+
+    if (numberSelection === '.' && display.textContent.includes('.')){ // does not allow multiple decimals in an input
+        return;
+    }
 
     if (operator === undefined) {
 
@@ -150,4 +162,4 @@ function displayNumber() { // places the number in the display
     }
 
 }
-// places numbers in the display
+// places numbers in the display and sets values for operation
